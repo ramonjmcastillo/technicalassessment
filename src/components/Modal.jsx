@@ -11,21 +11,26 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     height: "100%",
     width: "100%",
+    padding: "2rem 7%",
   },
 };
 
-function afterOpenModal() {
-  // references are now sync'd and can be accessed.
+const afterOpenModal = () => {
   document.body.style.overflow = "hidden";
-}
+};
 
 const CustomModal = (props) => {
   const { filters, setFilters, isOpen, setIsOpen, handleFilter } = props;
+
+  const [hasErrors, setHasErrors] = useState("");
+  const [hasChanges, setHasChanges] = useState(false);
 
   const closeModal = () => {
     setIsOpen(false);
     document.body.style.overflow = "visible";
   };
+
+  console.log(filters.type, "filters");
 
   return (
     <Modal
@@ -36,12 +41,14 @@ const CustomModal = (props) => {
       onAfterOpen={afterOpenModal}
     >
       <div className="filter-header">
-        <button onClick={closeModal}> X </button>
+        <span onClick={closeModal}> X </span>
         <div>Filters</div>
         <span onClick={() => setFilters({})}>Clear</span>
       </div>
 
-      <form>
+      <hr className="hr" />
+
+      <form className="filter-form">
         <div className="filter-price">
           <input
             onChange={(e) => setFilters({ ...filters, min: e.target.value })}
@@ -60,51 +67,57 @@ const CustomModal = (props) => {
           />
         </div>
 
-        <h3> Bed Rooms </h3>
         <div className="filter-bedroom">
-          <div
-            onClick={() => setFilters({ ...filters, type: undefined })}
-            className={`${filters.type === undefined ? "active" : ""} bedroom`}
-          >
-            Any
-          </div>
-          <div
-            onClick={() => setFilters({ ...filters, type: 0 })}
-            className={`${filters.type === 0 ? "active" : ""} bedroom`}
-          >
-            Studio
-          </div>
-          <div
-            onClick={() => setFilters({ ...filters, type: 1 })}
-            className={`${filters.type === 1 ? "active" : ""} bedroom`}
-          >
-            1
-          </div>
-          <div
-            onClick={() => setFilters({ ...filters, type: 2 })}
-            className={`${filters.type === 2 ? "active" : ""} bedroom`}
-          >
-            2
-          </div>
-          <div
-            onClick={() => setFilters({ ...filters, type: 3 })}
-            className={`${filters.type === 3 ? "active" : ""} bedroom`}
-          >
-            3
-          </div>
-          <div
-            onClick={() => setFilters({ ...filters, type: 4 })}
-            className={`${filters.type === 4 ? "active" : ""} bedroom`}
-          >
-            4+
+          <h3> Bed Rooms </h3>
+          <div className="bedroom-inputs">
+            <div
+              onClick={() => setFilters({ ...filters, type: undefined })}
+              className={`${
+                filters.type === undefined ? "active" : ""
+              } bedroom`}
+            >
+              Any
+            </div>
+            <div
+              onClick={() => setFilters({ ...filters, type: 0 })}
+              className={`${filters.type === 0 ? "active" : ""} bedroom`}
+            >
+              Studio
+            </div>
+            <div
+              onClick={() => setFilters({ ...filters, type: 1 })}
+              className={`${filters.type === 1 ? "active" : ""} bedroom`}
+            >
+              1
+            </div>
+            <div
+              onClick={() => setFilters({ ...filters, type: 2 })}
+              className={`${filters.type === 2 ? "active" : ""} bedroom`}
+            >
+              2
+            </div>
+            <div
+              onClick={() => setFilters({ ...filters, type: 3 })}
+              className={`${filters.type === 3 ? "active" : ""} bedroom`}
+            >
+              3
+            </div>
+            <div
+              onClick={() => setFilters({ ...filters, type: 4 })}
+              className={`${filters.type === 4 ? "active" : ""} bedroom`}
+            >
+              4+
+            </div>
           </div>
         </div>
 
-        {/* <button>tab navigation</button>
-        <button>stays</button>
-        <button>inside</button>
-        <button>the modal</button> */}
-        <button onClick={(e) => handleFilter(e)}> Apply Filter </button>
+        <button
+          disabled={hasErrors || hasChanges}
+          className="filter-button"
+          onClick={(e) => handleFilter(e)}
+        >
+          Apply Filter
+        </button>
       </form>
     </Modal>
   );

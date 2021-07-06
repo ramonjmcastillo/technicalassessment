@@ -30,6 +30,8 @@ const App = () => {
     const data = await getInitialProperties(4, filters);
     setProperties(data);
     setQuery(4);
+    setIsOpen(false);
+    document.body.style.overflow = "visible";
   };
 
   const getNextPropertyData = async () => {
@@ -37,7 +39,7 @@ const App = () => {
     if (query >= properties.totalProperties) {
       setHasMoreItems(false);
     } else {
-      const newData = await getFirstPropertyData();
+      await getFirstPropertyData();
     }
   };
 
@@ -68,7 +70,9 @@ const App = () => {
           next={getNextPropertyData}
           hasMore={hasMoreItems}
           scrollThreshold={0.99}
-          loader={<h4>LOADING MORE PROPERTIES....</h4>}
+          loader={
+            properties.list.length > 5 && <h4>LOADING MORE PROPERTIES....</h4>
+          }
         >
           {mappedProperties}
         </InfiniteScroll>

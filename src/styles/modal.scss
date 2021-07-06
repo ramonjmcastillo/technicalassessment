@@ -1,6 +1,7 @@
 .filter-header {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 2rem;
 }
 
 .filter-price {
@@ -16,32 +17,61 @@
 
 .filter-bedroom {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
 
-  > div {
-    border: 1px solid #d1d1d1;
-    padding: 0.5rem 0.625rem;
-    font-size: 0.8125rem;
+  .bedroom-inputs {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0.3125rem;
-    border-radius: 5px;
+    justify-content: space-between;
 
-    &:first-child {
-      margin-left: 0;
-    }
+    > div {
+      border: 1px solid #d1d1d1;
+      padding: 0.5rem 0.8125rem;
+      font-size: 0.8125rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0.3125rem;
+      border-radius: 5px;
 
-    &:last-child {
-      margin-right: 0;
-    }
+      &:first-child {
+        margin-left: 0;
+      }
 
-    &.active {
-      color: #ee620f;
-      background-color: #ffdac4;
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.active {
+        color: #ee620f;
+        background-color: #ffdac4;
+      }
     }
   }
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filter-button {
+  background-color: #e55710;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  width: 86%;
+  margin: 0 auto;
+  // margin: 0 7%;
+  outline: none;
+  border: none;
 }
 
 .input {
