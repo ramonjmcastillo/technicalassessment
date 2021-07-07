@@ -14,15 +14,12 @@ const App = () => {
   const [filters, setFilters] = useState({});
 
   const getFirstPropertyData = async () => {
-    if (Object.keys(filters).length === 0) {
-      const data = await getInitialProperties(query + 4);
-      setProperties(data);
-      setQuery((prevQuery) => prevQuery + 4);
-    } else {
-      const data = await getInitialProperties(query + 4, filters);
-      setProperties(data);
-      setQuery((prevQuery) => prevQuery + 4);
-    }
+    const data = await getInitialProperties(
+      query + 4,
+      Object.keys(filters).length === 0 ? {} : filters
+    );
+    setProperties(data);
+    setQuery((prevQuery) => prevQuery + 4);
   };
 
   const handleFilter = async (e) => {
@@ -35,7 +32,6 @@ const App = () => {
   };
 
   const getNextPropertyData = async () => {
-    console.log(" i am being called by the infinite scroll");
     if (query >= properties.totalProperties) {
       setHasMoreItems(false);
     } else {
@@ -69,20 +65,24 @@ const App = () => {
           dataLength={properties}
           next={getNextPropertyData}
           hasMore={hasMoreItems}
-          scrollThreshold={0.99}
+          scrollThreshold={0.999999999999}
           loader={
-            properties.list.length > 5 && <h4>LOADING MORE PROPERTIES....</h4>
+            properties?.list?.length >= 4 && (
+              <h4>LOADING MORE PROPERTIES....</h4>
+            )
           }
         >
           {mappedProperties}
         </InfiniteScroll>
       </div>
       <CustomModal
-        filters={filters}
-        setFilters={setFilters}
-        handleFilter={handleFilter}
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        {...{
+          filters,
+          setFilters,
+          handleFilter,
+          isOpen,
+          setIsOpen,
+        }}
       />
     </>
   );

@@ -25,12 +25,52 @@ const CustomModal = (props) => {
   const [hasErrors, setHasErrors] = useState("");
   const [hasChanges, setHasChanges] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const closeModal = () => {
     setIsOpen(false);
     document.body.style.overflow = "visible";
   };
 
-  console.log(filters.type, "filters");
+  const bedroom = [
+    { name: "Any", type: undefined },
+    { name: "Studio", type: "0" },
+    { name: "1", type: "1" },
+    { name: "2", type: "2" },
+    { name: "3", type: "3" },
+    { name: "4+", type: "4" },
+  ];
+
+  const mappedBedroom = bedroom.map((bed) => {
+    return (
+      <div
+        onClick={() => setFilters({ ...filters, type: bed.type })}
+        className={`${
+          filters.type === bed.type && filters.hasOwnProperty("type")
+            ? "active"
+            : ""
+        } bedroom`}
+      >
+        {bed.name}
+      </div>
+    );
+  });
+
+  const errorHandler = () => {
+    switch (true) {
+      case parseInt(filters.max) <= parseInt(filters.min):
+        setErrorMessage(
+          "Your maximum value cannot be smaller or equal than your minimum value"
+        );
+        break;
+      case parseInt(filters.max) < 0 || parseInt(filters.min) < 0:
+        setErrorMessage("Your minimum or maximum cannot be less than 0");
+        break;
+      default:
+        setErrorMessage("");
+        break;
+    }
+  };
 
   return (
     <Modal
@@ -51,7 +91,10 @@ const CustomModal = (props) => {
       <form className="filter-form">
         <div className="filter-price">
           <input
-            onChange={(e) => setFilters({ ...filters, min: e.target.value })}
+            onChange={(e) => {
+              setFilters({ ...filters, min: parseInt(e.target.value) });
+            }}
+            onBlur={() => errorHandler()}
             value={filters.min || ""}
             className="input"
             placeholder="Minimum"
@@ -59,60 +102,25 @@ const CustomModal = (props) => {
           />
           <p> — </p>
           <input
-            onChange={(e) => setFilters({ ...filters, max: e.target.value })}
+            onChange={(e) => {
+              setFilters({ ...filters, max: parseInt(e.target.value) });
+            }}
+            onBlur={() => errorHandler()}
             value={filters.max || ""}
             className="input"
             placeholder="Maximum"
             type="number"
           />
         </div>
+        <small> {errorMessage} </small>
 
         <div className="filter-bedroom">
           <h3> Bed Rooms </h3>
-          <div className="bedroom-inputs">
-            <div
-              onClick={() => setFilters({ ...filters, type: undefined })}
-              className={`${
-                filters.type === undefined ? "active" : ""
-              } bedroom`}
-            >
-              Any
-            </div>
-            <div
-              onClick={() => setFilters({ ...filters, type: 0 })}
-              className={`${filters.type === 0 ? "active" : ""} bedroom`}
-            >
-              Studio
-            </div>
-            <div
-              onClick={() => setFilters({ ...filters, type: 1 })}
-              className={`${filters.type === 1 ? "active" : ""} bedroom`}
-            >
-              1
-            </div>
-            <div
-              onClick={() => setFilters({ ...filters, type: 2 })}
-              className={`${filters.type === 2 ? "active" : ""} bedroom`}
-            >
-              2
-            </div>
-            <div
-              onClick={() => setFilters({ ...filters, type: 3 })}
-              className={`${filters.type === 3 ? "active" : ""} bedroom`}
-            >
-              3
-            </div>
-            <div
-              onClick={() => setFilters({ ...filters, type: 4 })}
-              className={`${filters.type === 4 ? "active" : ""} bedroom`}
-            >
-              4+
-            </div>
-          </div>
+          <div className="bedroom-inputs">{mappedBedroom}</div>
         </div>
 
         <button
-          disabled={hasErrors || hasChanges}
+          disabled={errorMessage !== "" || Object.keys(filters).length === 0}
           className="filter-button"
           onClick={(e) => handleFilter(e)}
         >
