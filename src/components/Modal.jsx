@@ -20,11 +20,8 @@ const afterOpenModal = () => {
 };
 
 const CustomModal = (props) => {
-  const { filters, setFilters, isOpen, setIsOpen, handleFilter } = props;
-
-  const [hasErrors, setHasErrors] = useState("");
-  const [hasChanges, setHasChanges] = useState(false);
-
+  const { filters, setFilters, isOpen, setIsOpen, handleFilter, isSubmitting } =
+    props;
   const [errorMessage, setErrorMessage] = useState("");
 
   const closeModal = () => {
@@ -81,9 +78,13 @@ const CustomModal = (props) => {
       onAfterOpen={afterOpenModal}
     >
       <div className="filter-header">
-        <span onClick={closeModal}> X </span>
+        <span className="trigger" onClick={closeModal}>
+          X
+        </span>
         <div>Filters</div>
-        <span onClick={() => setFilters({})}>Clear</span>
+        <span className="trigger" onClick={() => setFilters({})}>
+          Clear
+        </span>
       </div>
 
       <hr className="hr" />
@@ -120,8 +121,10 @@ const CustomModal = (props) => {
         </div>
 
         <button
-          disabled={errorMessage !== "" || Object.keys(filters).length === 0}
-          className="filter-button"
+          disabled={errorMessage !== "" || isSubmitting}
+          className={`filter-button ${
+            (errorMessage !== "" || isSubmitting) && "disabled"
+          }`}
           onClick={(e) => handleFilter(e)}
         >
           Apply Filter

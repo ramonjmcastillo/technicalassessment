@@ -1,13 +1,11 @@
 import axios from "axios";
 import { apiURL } from "../config";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const useProperty = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getInitialProperties = async (query, filters = {}) => {
-    console.log("i am calling the api");
-    console.log("give me the query", query);
     try {
       setLoading(true);
       const { data } = await axios.get(apiURL, {

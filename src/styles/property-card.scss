@@ -4,6 +4,10 @@
   margin: 1rem 0;
   font-size: 0.875rem;
 
+  @media (min-width: 896px) {
+    width: 100%;
+  }
+
   &:last-child {
     margin-bottom: 100px;
   }
@@ -11,6 +15,12 @@
   > img {
     height: 250px;
     width: 100%;
+    max-width: 450px;
+
+    @media (min-width: 896px) {
+      width: 100%;
+      height: 300px;
+    }
   }
 
   > h1 {
