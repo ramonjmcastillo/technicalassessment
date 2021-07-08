@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Modal from "react-modal";
+import { blockInvalidChar } from "../helpers/index";
 
 const customStyles = {
   content: {
@@ -60,9 +61,6 @@ const CustomModal = (props) => {
           "Your maximum value cannot be smaller or equal than your minimum value"
         );
         break;
-      case parseInt(filters.max) < 0 || parseInt(filters.min) < 0:
-        setErrorMessage("Your minimum or maximum cannot be less than 0");
-        break;
       default:
         setErrorMessage("");
         break;
@@ -100,6 +98,7 @@ const CustomModal = (props) => {
             className="input"
             placeholder="Minimum"
             type="number"
+            onKeyDown={blockInvalidChar}
           />
           <p style={{ margin: "0 auto" }}> — </p>
           <input
@@ -111,6 +110,7 @@ const CustomModal = (props) => {
             className="input"
             placeholder="Maximum"
             type="number"
+            onKeyDown={blockInvalidChar}
           />
         </div>
         <small> {errorMessage} </small>
