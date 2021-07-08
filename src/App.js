@@ -45,6 +45,7 @@ const App = () => {
     const data = await getInitialProperties(4, filters);
     setProperties(data);
     setQuery(4);
+    setHasMoreItems(true);
     setIsOpen(false);
     document.body.style.overflow = "visible";
     setIsSubmitting(false);
