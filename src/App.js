@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ReactComponent as FilterIcon } from "./assets/images/filter.svg";
 
 //hooks
 import useProperty from "./hooks/useProperty";
@@ -77,10 +78,15 @@ const App = () => {
   return (
     <>
       <div className="app content-padding">
-        <p style={{ fontWeight: "500" }}> Properties </p>
+        <p style={{ fontWeight: "500", color: "black" }}> Properties </p>
         <hr className="hr" />
-        <p onClick={() => setIsOpen(true)} className="filter trigger">
-          <img alt="filter" className="icon" src="/assets/images/filter.png" />
+        <p
+          style={{ color: "black" }}
+          onClick={() => setIsOpen(true)}
+          className="filter trigger"
+        >
+          {/* <img alt="filter" className="icon" src="/assets/images/filter.png" /> */}
+          <FilterIcon style={{ marginRight: "0.59375rem" }} />
           <span className="trigger"> Filter </span>
         </p>
         <hr className="hr" />
@@ -91,7 +97,7 @@ const App = () => {
             <CardSkeleton />
           </>
         ) : (
-          <p style={{ alignSelf: "flex-start" }}>
+          <p style={{ alignSelf: "flex-start", marginBottom: 0 }}>
             {properties.totalProperties} properties found
           </p>
         )}

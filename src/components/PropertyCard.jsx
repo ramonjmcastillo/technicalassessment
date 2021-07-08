@@ -7,7 +7,7 @@ const PropertyCard = (props) => {
         <img alt="Property" src={imageurl} />
         <h1> {props.title} </h1>
         <p className="property-description"> {description}</p>
-        <p className="property-price"> ${price}</p>
+        <p className="property-price"> ${price.toLocaleString()}</p>
       </div>
     </>
   );
