@@ -106,13 +106,15 @@ const App = () => {
               )
             }
             endMessage={
-              <button
-                style={{ width: "100%" }}
-                onClick={scrollToTop}
-                className="button"
-              >
-                Return to top
-              </button>
+              properties?.list?.length >= 4 && (
+                <button
+                  style={{ width: "100%" }}
+                  onClick={scrollToTop}
+                  className="button"
+                >
+                  Return to top
+                </button>
+              )
             }
           >
             {mappedProperties}

@@ -92,6 +92,7 @@ const CustomModal = (props) => {
           <input
             onChange={(e) => {
               setFilters({ ...filters, min: parseInt(e.target.value) });
+              // () => errorHandler();
             }}
             onBlur={() => errorHandler()}
             value={filters.min || ""}
@@ -104,6 +105,7 @@ const CustomModal = (props) => {
           <input
             onChange={(e) => {
               setFilters({ ...filters, max: parseInt(e.target.value) });
+              // () => errorHandler();
             }}
             onBlur={() => errorHandler()}
             value={filters.max || ""}
@@ -113,7 +115,7 @@ const CustomModal = (props) => {
             onKeyDown={blockInvalidChar}
           />
         </div>
-        <small> {errorMessage} </small>
+        <small className="error-message"> {errorMessage} </small>
 
         <div className="filter-bedroom">
           <h3> Bed Rooms </h3>
