@@ -6,8 +6,8 @@
 
 .filter-price {
   display: grid;
-  grid-template-columns: 45% 5% 45%;
-  grid-column-gap: 0.625rem;
+  grid-template-columns: 45% 10% 45%;
+  // grid-column-gap: 0.625rem;
   align-items: center;
 }
 
@@ -77,6 +77,9 @@
   width: 86%;
   margin: 0 auto;
 
+  @media (min-width: 896px) {
+  }
+
   &.disabled {
     cursor: not-allowed;
     background-color: #642607;
@@ -86,4 +89,14 @@
 .input {
   height: 35px;
   padding-left: 15px;
+}
+
+.ReactModal__Content {
+  &.ReactModal__Content--after-open {
+    @media (min-width: 992px) {
+      width: 35% !important;
+      height: 50% !important;
+      padding: 2rem 2.5% !important;
+    }
+  }
 }

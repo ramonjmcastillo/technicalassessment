@@ -101,7 +101,7 @@ const CustomModal = (props) => {
             placeholder="Minimum"
             type="number"
           />
-          <p> — </p>
+          <p style={{ margin: "0 auto" }}> — </p>
           <input
             onChange={(e) => {
               setFilters({ ...filters, max: parseInt(e.target.value) });
