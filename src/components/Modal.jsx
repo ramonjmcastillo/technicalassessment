@@ -61,6 +61,9 @@ const CustomModal = (props) => {
           "Your maximum value cannot be smaller or equal than your minimum value"
         );
         break;
+      case parseInt(filters.max) < 0 || parseInt(filters.min) < 0:
+        setErrorMessage("Your minimum or maximum cannot be less than 0");
+        break;
       default:
         setErrorMessage("");
         break;
