@@ -67,6 +67,12 @@
   outline: none;
   border: none;
   margin: 1rem 0;
+
+  @media (min-width: 992px) {
+    height: 50px;
+    align-self: flex-end;
+    margin-bottom: 2rem;
+  }
 }
 
 .error-message {
