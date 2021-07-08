@@ -3,7 +3,7 @@ import useProperty from "./hooks/useProperty";
 import PropertyCard from "./components/PropertyCard";
 import CustomModal from "./components/Modal";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Skeleton from "react-loading-skeleton";
+import CardSkeleton from "./components/CardSkeleton";
 
 const App = () => {
   const { getInitialProperties, loading } = useProperty();
@@ -56,7 +56,7 @@ const App = () => {
         <p style={{ fontWeight: "500" }}> Properties </p>
         <hr className="hr" />
         <p onClick={() => setIsOpen(true)} className="filter trigger">
-          <img className="icon" src="/assets/images/filter.png" />
+          <img alt="filter" className="icon" src="/assets/images/filter.png" />
           <span className="trigger"> Filter </span>
         </p>
         <hr className="hr" />
@@ -64,21 +64,7 @@ const App = () => {
 
         {loading ? (
           <>
-            <span style={{ width: "100%", height: "75px" }}>
-              <Skeleton />
-            </span>
-            <div style={{ width: "100%" }}>
-              <Skeleton height={250} />
-            </div>
-            <div style={{ width: "100%" }}>
-              <Skeleton height={25} />
-            </div>
-            <div style={{ width: "100%" }}>
-              <Skeleton height={25} />
-            </div>
-            <div style={{ width: "100%" }}>
-              <Skeleton height={25} />
-            </div>
+            <CardSkeleton />
           </>
         ) : (
           <p style={{ alignSelf: "flex-start" }}>

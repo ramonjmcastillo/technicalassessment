@@ -40,6 +40,14 @@ img {
   margin: 0 auto;
 }
 
+.skeleton {
+  width: 100%;
+
+  &:first-child {
+    height: 75px;
+  }
+}
+
 .infinite-scroll-component {
   @media (min-width: 896px) {
     display: grid;
