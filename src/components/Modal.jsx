@@ -122,7 +122,7 @@ const CustomModal = (props) => {
 
         <button
           disabled={errorMessage !== "" || isSubmitting}
-          className={`filter-button ${
+          className={`filter-button button ${
             (errorMessage !== "" || isSubmitting) && "disabled"
           }`}
           onClick={(e) => handleFilter(e)}

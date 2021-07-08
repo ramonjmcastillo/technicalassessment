@@ -42,6 +42,11 @@ const App = () => {
     }
   };
 
+  const scrollToTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+
   useEffect(() => {
     getFirstPropertyData();
   }, []);
@@ -78,6 +83,15 @@ const App = () => {
             next={getNextPropertyData}
             hasMore={hasMoreItems}
             scrollThreshold={0.99}
+            endMessage={
+              <button
+                style={{ width: "100%" }}
+                onClick={scrollToTop}
+                className="button"
+              >
+                Return to the top
+              </button>
+            }
             loader={
               properties?.list?.length >= 4 && (
                 <h4>LOADING MORE PROPERTIES....</h4>

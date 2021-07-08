@@ -55,7 +55,7 @@
   justify-content: space-between;
 }
 
-.filter-button {
+.button {
   background-color: #e55710;
   cursor: pointer;
   color: #ffffff;
@@ -64,14 +64,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
+  border: none;
+  margin: 1rem 0;
+}
+
+.filter-button {
   position: absolute;
   bottom: 2rem;
   left: 0;
   right: 0;
   width: 86%;
   margin: 0 auto;
-  outline: none;
-  border: none;
 
   &.disabled {
     cursor: not-allowed;
