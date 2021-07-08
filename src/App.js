@@ -91,7 +91,7 @@ const App = () => {
             dataLength={properties}
             next={getNextPropertyData}
             hasMore={hasMoreItems}
-            scrollThreshold={0.999999999999}
+            scrollThreshold={0.99}
             loader={
               properties?.list?.length >= 4 && (
                 <h4>LOADING MORE PROPERTIES....</h4>
