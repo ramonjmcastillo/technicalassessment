@@ -17,21 +17,19 @@
 
   .bedroom-inputs {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
 
     > div {
       border: 1px solid #d1d1d1;
-      padding: 0.5rem 0.6125rem;
+      padding: 0.5rem 0.85rem;
       font-size: 0.8125rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0 0.21875rem;
+      margin-right: 0.4375rem;
       border-radius: 5px;
-
-      @media (max-width: 300px) {
-        padding: 0.5rem 0.5rem;
-      }
 
       &:first-child {
         margin-left: 0;
@@ -101,6 +99,22 @@
 .input {
   height: 35px;
   padding-left: 15px;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: translateX(100px);
 }
 
 .ReactModal__Content {

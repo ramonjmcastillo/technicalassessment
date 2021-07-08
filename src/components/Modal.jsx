@@ -69,6 +69,7 @@ const CustomModal = (props) => {
 
   return (
     <Modal
+      closeTimeoutMS={500}
       isOpen={isOpen}
       onRequestClose={closeModal}
       style={customStyles}

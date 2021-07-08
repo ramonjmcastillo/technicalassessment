@@ -78,12 +78,13 @@ const App = () => {
   return (
     <>
       <div className="app content-padding">
-        <p style={{ fontWeight: "500", color: "black" }}> Properties </p>
+        <p className="header-text-black" style={{ fontWeight: "500" }}>
+          Properties
+        </p>
         <hr className="hr" />
         <p
-          style={{ color: "black" }}
           onClick={() => setIsOpen(true)}
-          className="filter trigger"
+          className="filter trigger header-text-black"
         >
           <FilterIcon className="filter-icon" />
           <span className="trigger"> Filter </span>
