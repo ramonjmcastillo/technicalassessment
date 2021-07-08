@@ -30,3 +30,30 @@
 .trigger {
   cursor: pointer;
 }
+
+.skeleton {
+  width: 100%;
+}
+
+.icon {
+  border-radius: initial;
+  height: 1.25rem;
+  width: 1.25rem;
+  margin: 0 0.625rem;
+}
+
+img {
+  border-radius: 0.625rem;
+}
+
+.filter-icon {
+  margin-right: 0.59375rem;
+}
+
+.infinite-scroll-component {
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: 32.5% 32.5% 32.5%;
+    grid-gap: 1rem;
+  }
+}

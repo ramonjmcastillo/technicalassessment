@@ -1,5 +1,5 @@
 @import "app.scss";
-@import "property-card.scss";
+@import "properties.scss";
 @import "modal.scss";
 
 //fonts
@@ -22,17 +22,6 @@ a {
   box-sizing: border-box;
 }
 
-img {
-  border-radius: 0.625rem;
-}
-
-.icon {
-  border-radius: initial;
-  height: 1.25rem;
-  width: 1.25rem;
-  margin: 0 0.625rem;
-}
-
 .content-padding {
   $value: 7%;
   padding-left: $value;
@@ -40,16 +29,4 @@ img {
 
   max-width: 1500px;
   margin: 0 auto;
-}
-
-.skeleton {
-  width: 100%;
-}
-
-.infinite-scroll-component {
-  @media (min-width: 992px) {
-    display: grid;
-    grid-template-columns: 32.5% 32.5% 32.5%;
-    grid-gap: 1rem;
-  }
 }

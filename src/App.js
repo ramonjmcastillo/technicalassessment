@@ -85,8 +85,7 @@ const App = () => {
           onClick={() => setIsOpen(true)}
           className="filter trigger"
         >
-          {/* <img alt="filter" className="icon" src="/assets/images/filter.png" /> */}
-          <FilterIcon style={{ marginRight: "0.59375rem" }} />
+          <FilterIcon className="filter-icon" />
           <span className="trigger"> Filter </span>
         </p>
         <hr className="hr" />
@@ -97,7 +96,7 @@ const App = () => {
             <CardSkeleton />
           </>
         ) : (
-          <p style={{ alignSelf: "flex-start", marginBottom: 0 }}>
+          <p className="properties-total">
             {properties.totalProperties} properties found
           </p>
         )}
@@ -115,11 +114,7 @@ const App = () => {
             }
             endMessage={
               properties?.list?.length >= 4 && (
-                <button
-                  style={{ width: "100%" }}
-                  onClick={scrollToTop}
-                  className="button"
-                >
+                <button onClick={scrollToTop} className="button">
                   Return to top
                 </button>
               )
