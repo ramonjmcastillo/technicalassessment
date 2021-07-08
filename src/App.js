@@ -23,6 +23,7 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [filters, setFilters] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { getInitialProperties, loading } = useProperty();
 
   //function declarations

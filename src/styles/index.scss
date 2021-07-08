@@ -45,7 +45,7 @@ img {
 }
 
 .infinite-scroll-component {
-  @media (min-width: 992  px) {
+  @media (min-width: 992px) {
     display: grid;
     grid-template-columns: 32.5% 32.5% 32.5%;
     grid-gap: 1rem;
