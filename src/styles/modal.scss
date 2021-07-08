@@ -30,6 +30,7 @@
       align-items: center;
       margin-right: 0.4375rem;
       border-radius: 5px;
+      margin-bottom: 0.8125rem;
 
       &:first-child {
         margin-left: 0;
@@ -100,6 +101,8 @@
   height: 35px;
   padding-left: 15px;
 }
+
+//Modal css
 
 .ReactModal__Overlay {
   opacity: 0;
