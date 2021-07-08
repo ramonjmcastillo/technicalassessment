@@ -1,20 +1,34 @@
 import { useState, useEffect } from "react";
+
+//hooks
 import useProperty from "./hooks/useProperty";
+
+//components
 import PropertyCard from "./components/PropertyCard";
 import CustomModal from "./components/Modal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CardSkeleton from "./components/CardSkeleton";
 
 const App = () => {
-  const { getInitialProperties, loading } = useProperty();
+  //states
+
+  //to set the number of properties being fetched
   const [query, setQuery] = useState(0);
+
+  //to check if will still call the api
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [properties, setProperties] = useState([]);
+
+  //modal states
   const [isOpen, setIsOpen] = useState(false);
   const [filters, setFilters] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { getInitialProperties, loading } = useProperty();
+
+  //function declarations
 
   const getFirstPropertyData = async () => {
+    //gets the data from the api, checks if there are filters
     const data = await getInitialProperties(
       query + 4,
       Object.keys(filters).length === 0 ? {} : filters
@@ -23,6 +37,8 @@ const App = () => {
     setQuery((prevQuery) => prevQuery + 4);
   };
 
+  //function when user clicks apply filter
+  //resets the limit to 4 with the new filters
   const handleFilter = async (e) => {
     setIsSubmitting(true);
     e.preventDefault();
@@ -34,6 +50,7 @@ const App = () => {
     setIsSubmitting(false);
   };
 
+  //function to call when reaching at the bottom of the page
   const getNextPropertyData = async () => {
     if (query >= properties.totalProperties) {
       setHasMoreItems(false);
@@ -83,19 +100,19 @@ const App = () => {
             next={getNextPropertyData}
             hasMore={hasMoreItems}
             scrollThreshold={0.99}
+            loader={
+              properties?.list?.length >= 4 && (
+                <h4>LOADING MORE PROPERTIES....</h4>
+              )
+            }
             endMessage={
               <button
                 style={{ width: "100%" }}
                 onClick={scrollToTop}
                 className="button"
               >
-                Return to the top
+                Return to top
               </button>
-            }
-            loader={
-              properties?.list?.length >= 4 && (
-                <h4>LOADING MORE PROPERTIES....</h4>
-              )
             }
           >
             {mappedProperties}
